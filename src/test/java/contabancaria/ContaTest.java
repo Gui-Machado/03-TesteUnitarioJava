@@ -142,9 +142,9 @@ class ContaTest {
     }
     
     @Test
-    void sacar_Saldo100Saca101_LancaIllegalStateExceptionESaldoPreservado(){
+    void sacar_Saldo100Saca101_LancaIllegalArgumentExceptionESaldoPreservado(){
         var conta = new Conta("Gui", 100);
-        assertThrows(IllegalStateException.class, () -> conta.sacar(101));
+        assertThrows(IllegalArgumentException.class, () -> conta.sacar(101));
         assertEquals(100, conta.getSaldo(), 0.001);}
     
     @Test
