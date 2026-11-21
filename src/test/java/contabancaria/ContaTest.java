@@ -218,7 +218,7 @@ class ContaTest {
         var contaA = new Conta("A", 0);
         var contaB = new Conta("B", 50);
         contaA.encerrar();
-        assertThrows(IllegalArgumentException.class, () -> contaA.transferir(contaB, 10));
+        assertThrows(IllegalStateException.class, () -> contaA.transferir(contaB, 10));
         assertEquals(50, contaB.getSaldo(), 0.001);
     }
 
@@ -227,7 +227,7 @@ class ContaTest {
         var contaA = new Conta("A", 100);
         var contaB = new Conta("B", 0);
         contaB.encerrar();
-        assertThrows(IllegalArgumentException.class, () -> contaA.transferir(contaB, 10));
+        assertThrows(IllegalStateException.class, () -> contaA.transferir(contaB, 10));
         assertEquals(100, contaA.getSaldo(), 0.001);
     }
 
