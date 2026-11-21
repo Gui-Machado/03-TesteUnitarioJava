@@ -56,7 +56,7 @@ public class Conta {
         if (!ativa)
             throw new IllegalStateException("Essa conta foi encerrada.");
         if (valor <= 0)
-            throw new IllegalArgumentException("O valor deve ser maior que zero.");
+            throw new IllegalArgumentException("O valor a ser depositado deve ser maior que zero.");
         saldo += valor;
     }
 
@@ -72,9 +72,9 @@ public class Conta {
         if (!ativa)
             throw new IllegalStateException("Essa conta foi encerrada.");
         if (valor <= 0)
-            throw new IllegalArgumentException("O valor deve ser maior que zero.");
+            throw new IllegalArgumentException("O valor a ser sacado deve ser maior que zero.");
         if (valor > saldo)
-            throw new IllegalArgumentException("O valor deve ser menor ou igual ao saldo atual.");
+            throw new IllegalArgumentException("O valor a ser sacado deve ser menor ou igual ao saldo atual.");
         saldo -= valor;
     }
 
@@ -87,8 +87,10 @@ public class Conta {
      *   - O saldo de ambas as contas deve ser atualizado corretamente.
      */
     public void transferir(Conta destino, double valor) {
-        // TODO: Implemente usando TDD
-        throw new UnsupportedOperationException();
+        if (!ativa || !destino.isAtiva()) 
+            throw new IllegalStateException("Ambas as contas devem estar ativas para transferir.");
+        this.sacar(valor);
+        destino.depositar(valor);
     }
 
     /**
